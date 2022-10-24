@@ -1,3 +1,8 @@
+<details>
+<summary>Click me</summary>
+dit is een test
+</details>
+
 # Labo_Assembly
 
 Maak volgende programma's in assembly:
