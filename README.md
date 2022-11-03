@@ -3,7 +3,20 @@
 dit is een test
 </details>
 
-# Labo_Assembly
+# Intro in Assembly
+
+Assembly is een veruit de laatste verstaanbare programmeertaal die er bestaat.
+
+# Omgeving opzetten
+
+# Eerste programma
+
+# Compileren
+
+# Invoer en uitvoer
+
+
+# Oefeningen
 
 Maak volgende programma's in assembly:
 - Schrijf een programma dat aan de gebruiker een getal vraagt, dit getal leest en het vierdubbel ervan toont op het scherm.
