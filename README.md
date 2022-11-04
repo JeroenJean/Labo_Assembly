@@ -1,18 +1,46 @@
-<details>
-<summary>Click me</summary>
-dit is een test
-</details>
-
 # Intro in Assembly
 
-Assembly is een veruit de laatste verstaanbare programmeertaal die er bestaat.
+Assembly is veruit de laatste verstaanbare programmeertaal die er bestaat. Alle programmeertalen worden immers eerst door hun eigen compiler omgezet naar assembly en vervolgens naar machine code. Hoewel het niet noodzakelijk is om volwaardig te kunnen programmeren in assembly binnen de opleiding, is het wel handig om een basiskennis van assembly te hebben. Het analyseren van virusen komt er immers vaak op neer op het analyseren van de assembly code van dat virus om zo te achterhalen hoe het virus in interactie gaat met je systeem. Daarnaast maakt een basiskennis van assembly ook meteen duidelijk hoe een CPU gebruik maakt van registers en ALU.
 
 # Omgeving opzetten
-Voor het programmeren van onze assembly oefeningen, 
+Voor het programmeren van onze assembly oefeningen, zijn er verschillende mogelijkheden. Er zijn vele online omgevingen waar je assembly kan schrijven en testen. Echter deze laat niet toe om gebruik te maken van hulpfuncties dewelke wij aanbieden. Om dit goed te faciliteren, gaan we gebruik maken van leia. Dit is een server die je kan gebruiken om je oefeningen in te programmeren en te testen. Volgende stappen zorgen ervoor dat je assembly omgevind correct is opgezet.
+- Log via SSH in op leia.uclllabs.be op poort 22345 met je rnummer.
+- Maak een nieuwe directory aan.
+- Clone volgende git repo in de net aangemaakte directory: https://github.com/swenr/CompSys_Assembler.git
 
-# Eerste programma
+Dit zal een nieuwe directory `CompSys_Assembler` hebben aangemaakt met volgende bestanden:
+```
+jeroen@laptop-ucll:~/Documents/UCLL/CompSys/test/CompSys_Assembler$ ls -l
+total 40
+-rw-rw-r-- 1 jeroen jeroen  1657 Nov  4 22:26 gt.asm
+-rw-rw-r-- 1 jeroen jeroen 11015 Nov  4 22:26 gtine.asm
+-rw-rw-r-- 1 jeroen jeroen   385 Nov  4 22:26 readme.md
+-rw-rw-r-- 1 jeroen jeroen   405 Nov  4 22:26 test.asm
+-rw-rw-r-- 1 jeroen jeroen   365 Nov  4 22:26 test.in
+-rw-rw-r-- 1 jeroen jeroen   213 Nov  4 22:26 test.uit
+-rwxrwxr-x 1 jeroen jeroen    34 Nov  4 22:26 vertaal
+-rwxrwxr-x 1 jeroen jeroen    54 Nov  4 22:26 voeruit
+```
+Zoals je kan zien zijn er reeds enkele x.asm bestanden. Hierover later in het labo meer uitleg.
 
-# Compileren
+# Assembleren en uitvoeren
+Alvorens we een programma kunnen uitvoeren moet de geschreven assembly code omgezet worden naar machine code. Doordat wij gebruik mogen maken mnemotechnische functie code en symbolische adressen, moeten deze eerst correct worden omgezet naar hexadecimale code. Dit laatste is immers het enigste wat een CPU verstaat (eigenlijk binair, maar hexadecimaal is gemakkelijker om te lezen). Omzetten van de mnemotechnische functie code naar machine code en symbolische adressen correct berekenen om gebruik te kunnen maken van het geheugen, gebeurt door een assembleerprogramma of assembler.
+
+Om dit vlot te laten verlopen, hebben wij een bash script geschreven dat dit voor jullie zal doen: 
+```
+$ ./vertaal vraag1
+vraag1.asm:4: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
+vraag1.asm:5: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
+```
+Het volstaat dus om `vertaal` op te roepen gevolgd door de filename zonder extensie. Dit zal een .o bestand (object bestand) maken van je programma.
+
+Dit bestand kunnen we echter nog niet uitvoeren. Omdat we ook gebruik maken van functie's die in een andere programma staan geschreven (gtine.asm en gt.asm) alsook subroutines van het OS, moeten deze nog op een correcte manier bij elkaar worden samengevoegd en gecompileerd worden tot 1 uitvoerbaar bestand. Ook hier hebben wij een bash script voor geschreven dat dit voor jullie doet:
+```
+$ ./voeruit vraag1
+graag een getal tussen -2147483648 en 2147483647 : 12
+48
+```
+❗ maak gebruik van `vertaal` om object bestanden aan de maken van gtine.asm en gt.asm.
 
 # Invoer en uitvoer
 Voor het oplossen van de oefeningen, ga je regelmatig input moeten vragen aan de eindgebruiker. Echter het vragen van input of output generen in assembly is niet gedaan met 1 enkele lijn code. Daarnaast moet je ook al grondige kennis hebben van assembly om dit tot een goed einde te brengen. Omdat dit voorbij het doel van onderdeel gaat, mag gebruik maken van functies die wij voorzien.
@@ -22,6 +50,7 @@ Voor het vragen vragen van input maak je gebruik van `inv[test]`. Dit zorgt ervo
 Voor het tonen van een getal mag je gebruik maken van `uit[test]`. Dit zorgt ervoor dat de waarde van de variabele test aan de eindgebruiker wordt getoond. Je mag `uit[<variable>]` ook enkel gebruiken met een variabelen. Rechtstreeks de inhoude van een register aan de eindgebruiker laten zien is niet mogelijk.
 
 # Oefeningen
+Nu je omgeving correct is opgezet en je een programma kan asembleren en compileren, is het tijd om zelf aan de slag te gaan.
 
 Maak volgende programma's in assembly:
 - Schrijf een programma dat aan de gebruiker een getal vraagt, dit getal leest en het vierdubbel ervan toont op het scherm.
