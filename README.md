@@ -8,13 +8,18 @@ dit is een test
 Assembly is een veruit de laatste verstaanbare programmeertaal die er bestaat.
 
 # Omgeving opzetten
+Voor het programmeren van onze assembly oefeningen, 
 
 # Eerste programma
 
 # Compileren
 
 # Invoer en uitvoer
+Voor het oplossen van de oefeningen, ga je regelmatig input moeten vragen aan de eindgebruiker. Echter het vragen van input of output generen in assembly is niet gedaan met 1 enkele lijn code. Daarnaast moet je ook al grondige kennis hebben van assembly om dit tot een goed einde te brengen. Omdat dit voorbij het doel van onderdeel gaat, mag gebruik maken van functies die wij voorzien.
 
+Voor het vragen vragen van input maak je gebruik van `inv[test]`. Dit zorgt ervoor dat er aan de eindgebruiker een getal gevraagd wordt en opgeslagen wordt in de variabele `test`. Je mag `inv[<variable>]` ook enkel gebruiken met een variabelen. Rechtstreeks invoer naar een register is niet mogelijk.
+
+Voor het tonen van een getal mag je gebruik maken van `uit[test]`. Dit zorgt ervoor dat de waarde van de variabele test aan de eindgebruiker wordt getoond. Je mag `uit[<variable>]` ook enkel gebruiken met een variabelen. Rechtstreeks de inhoude van een register aan de eindgebruiker laten zien is niet mogelijk.
 
 # Oefeningen
 
