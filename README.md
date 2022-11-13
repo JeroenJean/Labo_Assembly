@@ -30,8 +30,6 @@ Alvorens we een programma kunnen uitvoeren, moet de geschreven assembly code omg
 Om dit vlot te laten verlopen, hebben wij een bash script geschreven dat dit voor jullie zal doen: 
 ```
 $ ./vertaal vraag1
-vraag1.asm:4: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
-vraag1.asm:5: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
 ```
 Het volstaat dus om `vertaal` op te roepen gevolgd door de filename zonder extensie. Dit zal een .o bestand (object bestand) maken van je programma.
 
@@ -102,7 +100,7 @@ In deze sectie gaan we onze eigenlijke code schrijven. Deze moet verplichtend st
 # Geheugen
 In zowel .data als de .bss sectie is het mogelijk om bepaalde delen van geheugen te reserveren om hiervan later gebruik te maken in het programma. Dit noemen we doorgaans een variabele. De manier waarop we een variabele gaan definiëren hangt of we deze reeds een waarde gaan meegeven bij het definiëren of niet.
 ## Geïnitialiseerde data
-Bij geïnitialiseerde data gaan we aan de hand van een mnemotechnische variabele een stukje van het geheugen reserveren tijdens het uitvoeren van het programma. Deze variabele gaan reeds een initiële waarde geven. Volgende mogelijkheden zijn ter onze beschikking.
+Bij geïnitialiseerde data gaan we aan de hand van een variabele een stukje van het geheugen reserveren tijdens het uitvoeren van het programma. Deze variabele gaan reeds een initiële waarde geven. Volgende mogelijkheden zijn ter onze beschikking.
 
 Directive | Doel | Gebruikt geheugen
 --- | --- | ---
@@ -121,7 +119,7 @@ DT | Definiëer Tien Bytes | alloceer 10 bytes
 ```
 
 ## Niet geïnitialiseerde data
-Bij niet geïnitialiseerde data gaan we aan de van een mnemotechnische variabele een stukje geheugen reserveren zonder deze te initialiseren (gaan start waarde geven). Dit doen we in de .bss sectie. Hiervoor kan men gebruik maken van onderstaande mogelijkheden.
+Bij niet geïnitialiseerde data gaan we aan de van een variabele een stukje geheugen reserveren zonder deze te initialiseren (gaan start waarde geven). Dit doen we in de .bss sectie. Hiervoor kan men gebruik maken van onderstaande mogelijkheden.
 
 Directive | Doel
 --- | ---
