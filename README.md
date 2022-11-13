@@ -50,6 +50,148 @@ Voor het vragen vragen van input maak je gebruik van `inv[test]`. Dit zorgt ervo
 
 Voor het tonen van een getal mag je gebruik maken van `uit[test]`. Dit zorgt ervoor dat de waarde van de variabele test aan de eindgebruiker wordt getoond. Je mag `uit[<variable>]` ook enkel gebruiken met een variabelen. Rechtstreeks de inhoud van een register aan de eindgebruiker laten zien is niet mogelijk.
 
+# Code blocks
+Het schrijven van een assembly programma moet steeds voldoen aan een vaste structuur. Dit bestaat uit 3 secties die al dan niet verplicht zijn:
+- data sectie (niet verplicht)
+- bss sectie (niet verplicht)
+- text sectie (verplicht)
+
+Een voorbeeld programma zou er zo uit kunnen zien:
+```nasm
+    %include "gt.asm"
+    section .data
+    vier: dd 1
+    miljard: dd 1000000000
+    vierm: dd 2000000000
+    
+    section .bss
+    help: resd 1
+    
+    section .text
+    global _start
+    _start:
+        mov ebp, esp; for correct debugging
+        ;write your code here
+        xor eax, eax
+        mov eax, [vierm]
+        imul dword [vier]
+        mov eax, [vierm]
+        imul dword [vier]
+        mov [help], edx
+        uit[help]
+        
+        mov eax, 1
+        int 0x80
+```
+
+## Data sectie
+De data sectie wordt gebruikt voor het declareren van geïnitialiseerde variabelen en constanten. Dit geven we aan door:
+```nasm
+    section .data
+```
+
+## BSS sectie
+De bss sectie wordt gebruik voor het declareren van niet geïnitialiseerde variabelen. Alle variabelen zoals in volgende paragraaf vermeld staat, worden aanvaard. Dit geven we aan door: 
+```nasm
+    section .bss    
+```
+
+## Text sectie
+In deze sectie gaan we onze eigenlijke code schrijven. Deze moet verplichtend start met global CMAIN. Dit geeft aan de CPU weer waar het eigenlijke uitvoeren van het programma begint. Afhankelijk van welke compiler je gebruik, kan dit ook global \_start zijn.
+
+# Geheugen
+In zowel .data als de .bss sectie is het mogelijk om bepaalde delen van geheugen te reserveren om hiervan later gebruik te maken in het programma. Dit noemen we doorgaans een variabele. De manier waarop we een variabele gaan definiëren hangt of we deze reeds een waarde gaan meegeven bij het definiëren of niet.
+## Geïnitialiseerde data
+Bij geïnitialiseerde data gaan we aan de hand van een mnemotechnische variabele een stukje van het geheugen reserveren tijdens het uitvoeren van het programma. Deze variabele gaan reeds een initiële waarde geven. Volgende mogelijkheden zijn ter onze beschikking.
+
+Directive | Doel | Gebruikt geheugen
+--- | --- | ---
+DB | Definiëer Byte | alloceer 1 byte
+DW | Definiëer Word | alloceer 2 bytes
+DD | Definiëer Dubbelwoord | alloceer 4 bytes
+DQ | Definiëer Quadwoord | alloceer 8 bytes
+DT | Definiëer Tien Bytes | alloceer 10 bytes
+
+```nasm
+    section .data
+        choice: DB 'y'
+        number: DW 12345
+        neg_number: DW -12345
+        number2: DD 23456463
+```
+
+## Niet geïnitialiseerde data
+Bij niet geïnitialiseerde data gaan we aan de van een mnemotechnische variabele een stukje geheugen reserveren zonder deze te initialiseren (gaan start waarde geven). Dit doen we in de .bss sectie. Hiervoor kan men gebruik maken van onderstaande mogelijkheden.
+
+Directive | Doel
+--- | ---
+RESB | Reserveer 1 byte
+RESW | Reserveer 1 woord
+RESD | Reserveer 1 dubbelwoord
+RESQ | Reserveer 1 quadwoord
+REST | Reserveer 10 bytes
+
+```nasm
+    section .bss
+        sign: RESB 1
+        number: RESW 1
+        big_number: RESD 1
+```
+## Constanten
+Constanten zijn een vorm van variabelen die we gaan initialiseren en nadien nooit aanpassen. Dit gaan we definiëren in de .data sectie. Hiervoor maken we gebruik van het `EQU`. Eigenlijk mogen we dit niet echt kaderen binnen geheugen. Bij assembly is het namelijk zo dat een constante die gedefiniëerd is met EQU, geen vaste plaats in het geheugen zal innemen. Telkens wanneer de assembler deze constante tegenkomt in de code tijdens het assembleren, zal hij deze letterlijk vervangen door de waarde die aangegeven is in de .data sectie met EQU.
+```nasm
+    section .data
+        star: EQU '*'
+        number: EQU 5128
+        big_number: EQU -2423523453
+```
+# Basis bewerkingen
+Binnen deze cursus gaan we enkel gebruik maken van een beperkte instructieset binnen assembly: MOV, ADD, SUB, IMUL en IDIV. Deze volstaan om een duidelijk beeld te krijgen van een lagere programmeertaal en hoe hier mee om te gaan. 
+
+## MOV
+De MOV instuctie kopieert de data van de tweede operand naar de locatie van de eerste operand. Volgende mov mogelijkheden zijn beschikbaar.
+- `mov <reg>,<reg>`
+- `mov <reg>,<mem>`
+- `mov <mem>,<reg>`
+- `mov <reg>,<const>`
+- `mov <mem>,<const>`
+Het is meteen duidelijk dat het niet mogelijk is om via het MOV bevel van de ene variabele naar de andere variabele rechtstreeks te kopiëren. Dit kan men enkel bekomen door de waarde van de eerste variabele naar een register te kopiëren en vervolgens de inhoud van het register naar de andere variabele te kopiëren.
+
+## ADD
+De ADD instructie gaat twee operanden met elkaar optellen en het resultaat in de eerste operand opslaan. Volgende ADD instructies zijn mogelijk:
+- `add <reg>,<reg>`
+- `add <reg>,<mem>`
+- `add <reg>,<con>`
+
+## SUB
+De SUB instructie gaat in de eerste operand het resultaat opslaan van de eerste operand - de tweede operand. Volgende SUB instructies zijn mogelijk:
+- `sub <reg>,<reg>`
+- `sub <reg>,<mem>`
+- `sub <reg>,<con>`
+
+## IMUL
+Om te vermenigvuldigen hebben we een dubbele accumulator nodig. Dit komt doordat het resultaat van een vermenigvuldiging dubbel zo lang kan zijn als elk van de factoren. Vanaf de i386 fungeren registers EDX (RDX) en EAX (RAX) als dubbele accumulator. Zoals EAX is EDX een register in de c.v.e. dat uit 32 bits bestaat. EDX kan ook gebruikt worden als accumulator.
+```nasm}
+    getal1: DD 7
+    getal2: DD 5
+    ...
+    mov eax,[getal1]
+    imul dword [getal2]
+```
+
+## IDIV
+De deling is de omgekeerde bewerking van de vermenigvuldiging, en verloopt ook via (EDX,EAX). Het deeltal moet zich bevinden in het registerpaar. De deling
+levert 2 resultaten op: rest en quotiënt. Het quotiënt komt in EAX, de rest in EDX.
+```nasm
+    nul: DD 0
+    deeltal: DD 85
+    deler: DD 3
+    ...
+    mov edx,[nul]
+    mov eax,[deeltal]
+    idiv dword [deler]
+```
+
 # Oefeningen
 Nu je omgeving correct is opgezet en je een programma kan asembleren en compileren, is het tijd om zelf aan de slag te gaan.
 
