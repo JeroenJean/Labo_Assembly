@@ -5,10 +5,10 @@ Assembly is veruit de laatste verstaanbare programmeertaal die er bestaat. Alle 
 # Omgeving opzetten
 Voor het programmeren van onze assembly oefeningen, zijn er verschillende mogelijkheden. Er zijn vele online omgevingen waar je assembly kan schrijven en testen. Echter deze laten niet toe om gebruik te maken van hulpfuncties dewelke wij aanbieden. Om dit goed te faciliteren, gaan we gebruik maken van leia. Dit is een server die je kan gebruiken om je oefeningen in te programmeren en te testen. Volgende stappen zorgen ervoor dat je assembly omgeving correct is opgezet.
 - Log via SSH in op leia.uclllabs.be op poort 22345 met je rnummer.
-- Maak een nieuwe directory aan.
-- Clone volgende git repo in de net aangemaakte directory: https://github.com/swenr/CompSys_Assembler.git
+- Maak een nieuwe directory aan
+- Kopiëer de inhoud van /tmp/Compsys_Assembler in de directory die je net hebt aangemaakt
 
-Dit zal een nieuwe directory `CompSys_Assembler` hebben aangemaakt met volgende bestanden:
+Dit zou volgende bestanden moeten bevatten:
 ```
 jeroen@laptop-ucll:~/Documents/UCLL/CompSys/test/CompSys_Assembler$ ls -l
 total 40
