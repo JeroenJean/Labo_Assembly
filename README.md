@@ -144,6 +144,10 @@ Constanten zijn een vorm van variabelen die we gaan initialiseren en nadien nooi
         star: EQU '*'
         number: EQU 5128
         big_number: EQU -2423523453
+    ...
+    mov eax, star
+    mov eax, number
+    mov eax, big_number
 ```
 # Basisbewerkingen
 Binnen deze cursus gaan we enkel gebruik maken van een beperkte instructieset binnen assembly: MOV, ADD, SUB, IMUL en IDIV. Deze volstaan om een duidelijk beeld te krijgen van een lagere programmeertaal en hoe hier mee om te gaan. 
