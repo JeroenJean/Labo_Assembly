@@ -41,7 +41,7 @@ $ ./voeruit vraag1
 graag een getal tussen -2147483648 en 2147483647 : 12
 48
 ```
-❗ maak gebruik van `vertaal` om object bestanden aan te maken van gtine.asm en gt.asm.
+❗ maak gebruik van `vertaal` om object bestanden aan te maken van **gtine.asm** en **gt.asm**.
 
 # Invoer en uitvoer
 Voor het oplossen van de oefeningen, ga je regelmatig input moeten vragen aan de eindgebruiker. Echter het vragen van input of output generen in assembly is niet gedaan met 1 enkele lijn code. Daarnaast moet je ook al grondige kennis hebben van assembly om dit tot een goed einde te brengen. Omdat dit voorbij het doel van het OPO gaat, mag je gebruik maken van functies die wij hebben voorzien.
