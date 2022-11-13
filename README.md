@@ -145,7 +145,7 @@ Constanten zijn een vorm van variabelen die we gaan initialiseren en nadien nooi
         number: EQU 5128
         big_number: EQU -2423523453
 ```
-# Basis bewerkingen
+# Basisbewerkingen
 Binnen deze cursus gaan we enkel gebruik maken van een beperkte instructieset binnen assembly: MOV, ADD, SUB, IMUL en IDIV. Deze volstaan om een duidelijk beeld te krijgen van een lagere programmeertaal en hoe hier mee om te gaan. 
 
 ## MOV
@@ -155,6 +155,7 @@ De MOV instuctie kopieert de data van de tweede operand naar de locatie van de e
 - `mov <mem>,<reg>`
 - `mov <reg>,<const>`
 - `mov <mem>,<const>`
+
 Het is meteen duidelijk dat het niet mogelijk is om via het MOV bevel van de ene variabele naar de andere variabele rechtstreeks te kopiëren. Dit kan men enkel bekomen door de waarde van de eerste variabele naar een register te kopiëren en vervolgens de inhoud van het register naar de andere variabele te kopiëren.
 
 ## ADD
