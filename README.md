@@ -208,7 +208,7 @@ Maak volgende programma's in assembly:
 5. Schrijf een programma dat de waarde van B²-4AC toont. Eerst worden de waarden van A, B, C ingelezen.
 6. Schrijf een programma dat een getal leest, A, en de waarde van A^7 toont. (Hoe groot kunnen onze getallen zijn? Als A7 kan, hoe groot kan A dan zijn?)
 7. Definieer constanten met als waarden: 3, 12, 1583, 274, 420, 11. Gebruik voor de optelling en de aftrekking EDX als accumulator. Schrijf een programma dat:
-  - 3 + 12 berekent en het resultaat toont;
-  - 3 - 12 berekent en het resultaat toont;
-  - Quotiënt en rest berekent van de deling 1583 / 274 en deze resultaten toont;
-  - 420 * 11 berekent en het resultaat toont.
+    - 3 + 12 berekent en het resultaat toont;
+    - 3 - 12 berekent en het resultaat toont;
+    - Quotiënt en rest berekent van de deling 1583 / 274 en deze resultaten toont;
+    - 420 * 11 berekent en het resultaat toont.
