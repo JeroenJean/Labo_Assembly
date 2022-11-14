@@ -49,7 +49,7 @@ Voor het vragen vragen van input maak je gebruik van `inv[test]`. Dit zorgt ervo
 Voor het tonen van een getal mag je gebruik maken van `uit[test]`. Dit zorgt ervoor dat de waarde van de variabele test aan de eindgebruiker wordt getoond. Je mag `uit[<variable>]` ook enkel gebruiken met een variabelen. Rechtstreeks de inhoud van een register aan de eindgebruiker laten zien is niet mogelijk.
 
 # Code blocks
-Het schrijven van een assembly programma moet steeds voldoen aan een vaste structuur aslook steeds de juist extensie hebben. Je bestandsnaam moet dus steeds onder de vorm zijn van `<naam>.asm`. De inhoud van je bestand bestaat uit 3 secties die al dan niet verplicht zijn:
+Het schrijven van een assembly programma moet steeds voldoen aan een vaste structuur alsook steeds de juist extensie hebben. Je bestandsnaam moet dus steeds onder de vorm zijn van `<naam>.asm`. De inhoud van je bestand bestaat uit 3 secties die al dan niet verplicht zijn:
 - data sectie (niet verplicht)
 - bss sectie (niet verplicht)
 - text sectie (verplicht)
