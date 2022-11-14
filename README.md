@@ -49,7 +49,7 @@ Voor het vragen vragen van input maak je gebruik van `inv[test]`. Dit zorgt ervo
 Voor het tonen van een getal mag je gebruik maken van `uit[test]`. Dit zorgt ervoor dat de waarde van de variabele test aan de eindgebruiker wordt getoond. Je mag `uit[<variable>]` ook enkel gebruiken met een variabelen. Rechtstreeks de inhoud van een register aan de eindgebruiker laten zien is niet mogelijk.
 
 # Code blocks
-Het schrijven van een assembly programma moet steeds voldoen aan een vaste structuur aslook steeds de juist extensie hebben. Je bestandsnaam moet dus steeds onder de vorm zijn van `<naam>.asm`. De inhoud van het je bestand bestaat uit 3 secties die al dan niet verplicht zijn:
+Het schrijven van een assembly programma moet steeds voldoen aan een vaste structuur aslook steeds de juist extensie hebben. Je bestandsnaam moet dus steeds onder de vorm zijn van `<naam>.asm`. De inhoud van je bestand bestaat uit 3 secties die al dan niet verplicht zijn:
 - data sectie (niet verplicht)
 - bss sectie (niet verplicht)
 - text sectie (verplicht)
@@ -95,12 +95,13 @@ De bss sectie wordt gebruik voor het declareren van niet geïnitialiseerde varia
 ```
 
 ## Text sectie
-In deze sectie gaan we onze eigenlijke code schrijven. Deze moet verplichtend start met global CMAIN. Dit geeft aan de CPU weer waar het eigenlijke uitvoeren van het programma begint. Afhankelijk van welke compiler je gebruik, kan dit ook global \_start zijn.
+In deze sectie gaan we onze eigenlijke code schrijven. Deze moet verplichtend starten met global CMAIN. Dit geeft aan de CPU weer waar het eigenlijke uitvoeren van het programma begint. Afhankelijk van welke compiler je gebruik, kan dit ook global \_start zijn. Voor de linux omgeving waar wij in werken zal dit steeds `_start` zijn.
 
 # Geheugen
-In zowel .data als de .bss sectie is het mogelijk om bepaalde delen van geheugen te reserveren om hiervan later gebruik te maken in het programma. Dit noemen we doorgaans een variabele. De manier waarop we een variabele gaan definiëren hangt of we deze reeds een waarde gaan meegeven bij het definiëren of niet.
+In zowel de .data als de .bss sectie is het mogelijk om bepaalde delen van het geheugen te reserveren om hier later gebruik van te maken in het programma. Dit noemen we doorgaans een variabele. De manier waarop we een variabele definiëren hangt of we deze reeds een waarde gaan meegeven bij het definiëren of niet.
+
 ## Geïnitialiseerde data
-Bij geïnitialiseerde data gaan we aan de hand van een variabele een stukje van het geheugen reserveren tijdens het uitvoeren van het programma. Deze variabele gaan reeds een initiële waarde geven. Volgende mogelijkheden zijn ter onze beschikking.
+Bij geïnitialiseerde data gaan we aan de hand van een variabele een stukje geheugen reserveren dat tijdens het uitvoeren van het programma kan gebruikt worden. Deze variabele gaat reeds een initiële waarde meerkrijgen tijdens het declareren. Volgende mogelijkheden zijn ter onze beschikking.
 
 Directive | Doel | Gebruikt geheugen
 --- | --- | ---
@@ -119,7 +120,7 @@ DT | Definiëer Tien Bytes | alloceer 10 bytes
 ```
 
 ## Niet geïnitialiseerde data
-Bij niet geïnitialiseerde data gaan we aan de van een variabele een stukje geheugen reserveren zonder deze te initialiseren (gaan start waarde geven). Dit doen we in de .bss sectie. Hiervoor kan men gebruik maken van onderstaande mogelijkheden.
+Bij niet geïnitialiseerde data gaan we aan de van een variabele een stukje geheugen reserveren zonder deze te initialiseren (gaan startwaarde geven). Dit doen we in de .bss sectie. Hiervoor kan men gebruik maken van onderstaande mogelijkheden.
 
 Directive | Doel
 --- | ---
@@ -136,7 +137,7 @@ REST | Reserveer 10 bytes
         big_number: RESD 1
 ```
 ## Constanten
-Constanten zijn een vorm van variabelen die we gaan initialiseren en nadien nooit aanpassen. Dit gaan we definiëren in de .data sectie. Hiervoor maken we gebruik van het `EQU`. Eigenlijk mogen we dit niet echt kaderen binnen geheugen. Bij assembly is het namelijk zo dat een constante die gedefiniëerd is met EQU, geen vaste plaats in het geheugen zal innemen. Telkens wanneer de assembler deze constante tegenkomt in de code tijdens het assembleren, zal hij deze letterlijk vervangen door de waarde die aangegeven is in de .data sectie met EQU.
+Constanten zijn een vorm van variabelen die we gaan initialiseren en nadien nooit aanpassen. Deze gaan we definiëren in de .data sectie. Hiervoor maken we gebruik van `EQU`. Eigenlijk mogen we dit niet echt kaderen binnen geheugen. Bij assembly is het namelijk zo dat een constante die gedefiniëerd is met EQU, geen vaste plaats in het geheugen zal innemen. Telkens wanneer de assembler deze constante tegenkomt in de code tijdens het assembleren, zal hij deze letterlijk vervangen door de waarde die aangegeven is in de .data sectie met EQU.
 ```nasm
     section .data
         star: EQU '*'
@@ -173,7 +174,7 @@ De SUB instructie gaat in de eerste operand het resultaat opslaan van de eerste 
 - `sub <reg>,<con>`
 
 ## IMUL
-Om te vermenigvuldigen hebben we een dubbele accumulator nodig. Dit komt doordat het resultaat van een vermenigvuldiging dubbel zo lang kan zijn als elk van de factoren. Vanaf de i386 fungeren registers EDX (RDX) en EAX (RAX) als dubbele accumulator. Zoals EAX is EDX een register in de c.v.e. dat uit 32 bits bestaat. EDX kan ook gebruikt worden als accumulator.
+Om te vermenigvuldigen hebben we een dubbele accumulator nodig. Dit komt doordat het resultaat van een vermenigvuldiging dubbel zo lang kan zijn als elk van de factoren. Vanaf de i386 fungeren registers EDX (RDX) en EAX (RAX) als dubbele accumulator. Zoals EAX is EDX een register in de CPU dat uit 32 bits bestaat. EDX kan ook gebruikt worden als accumulator.
 ```nasm}
     getal1: DD 7
     getal2: DD 5
@@ -181,7 +182,7 @@ Om te vermenigvuldigen hebben we een dubbele accumulator nodig. Dit komt doordat
     mov eax,[getal1]
     imul dword [getal2]
 ```
-❗ Let op: met `imul dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabelen werken. ❗
+❗ Let op: met `imul dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabele werken. ❗
 
 ## IDIV
 De deling is de omgekeerde bewerking van de vermenigvuldiging, en verloopt ook via (EDX,EAX). Het deeltal moet zich bevinden in het registerpaar. De deling
@@ -196,7 +197,7 @@ levert 2 resultaten op: rest en quotiënt. Het quotiënt komt in EAX, de rest in
     idiv dword [deler]
 ```
 
-❗ Let op: met `idiv dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabelen werken. ❗
+❗ Let op: met `idiv dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabele werken. ❗
 
 # Oefeningen
 Nu je omgeving correct is opgezet en je een programma kan asembleren en compileren, is het tijd om zelf aan de slag te gaan.
