@@ -181,6 +181,7 @@ Om te vermenigvuldigen hebben we een dubbele accumulator nodig. Dit komt doordat
     mov eax,[getal1]
     imul dword [getal2]
 ```
+❗ Let op: met `imul dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabele werken. ❗
 
 ## IDIV
 De deling is de omgekeerde bewerking van de vermenigvuldiging, en verloopt ook via (EDX,EAX). Het deeltal moet zich bevinden in het registerpaar. De deling
@@ -195,6 +196,8 @@ levert 2 resultaten op: rest en quotiënt. Het quotiënt komt in EAX, de rest in
     idiv dword [deler]
 ```
 
+❗ Let op: met `imul dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabele werken. ❗
+
 # Oefeningen
 Nu je omgeving correct is opgezet en je een programma kan asembleren en compileren, is het tijd om zelf aan de slag te gaan.
 
@@ -205,7 +208,7 @@ Maak volgende programma's in assembly:
 4. Schrijf een programma dat drie getallen vraagt (x, y en z) en dat dan de waarde van 2x + 4y + 8z toont. **Je mag enkel gebruik maken van ADD**
 5. Schrijf een programma dat de waarde van B²-4AC toont. Eerst worden de waarden van A, B, C ingelezen.
 6. Schrijf een programma dat een getal leest, A, en de waarde van A^7 toont. (Hoe groot kunnen onze getallen zijn? Als A7 kan, hoe groot kan A dan zijn?)
-7. Definieer constanten met als waarden: 3, 12, 1583, 274, 420, 11. Gebruik voor de optelling en de aftrekking EDX als accumulator. Schrijf een programma dat:
+7. Definieer constanten met als waarden: 3, 12, 1583 en 420. Definieer geïnitialiseerde variabelen met volgende waarden: 274 en 11. Gebruik voor de optelling en de aftrekking EDX als accumulator. Schrijf een programma dat:
     - 3 + 12 berekent en het resultaat toont;
     - 3 - 12 berekent en het resultaat toont;
     - Quotiënt en rest berekent van de deling 1583 / 274 en deze resultaten toont;
