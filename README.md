@@ -49,7 +49,7 @@ Voor het vragen vragen van input maak je gebruik van `inv[test]`. Dit zorgt ervo
 Voor het tonen van een getal mag je gebruik maken van `uit[test]`. Dit zorgt ervoor dat de waarde van de variabele test aan de eindgebruiker wordt getoond. Je mag `uit[<variable>]` ook enkel gebruiken met een variabelen. Rechtstreeks de inhoud van een register aan de eindgebruiker laten zien is niet mogelijk.
 
 # Code blocks
-Het schrijven van een assembly programma moet steeds voldoen aan een vaste structuur. Dit bestaat uit 3 secties die al dan niet verplicht zijn:
+Het schrijven van een assembly programma moet steeds voldoen aan een vaste structuur aslook steeds de juist extensie hebben. Je bestandsnaam moet dus steeds onder de vorm zijn van `<naam>.asm`. De inhoud van het je bestand bestaat uit 3 secties die al dan niet verplicht zijn:
 - data sectie (niet verplicht)
 - bss sectie (niet verplicht)
 - text sectie (verplicht)
@@ -181,7 +181,7 @@ Om te vermenigvuldigen hebben we een dubbele accumulator nodig. Dit komt doordat
     mov eax,[getal1]
     imul dword [getal2]
 ```
-❗ Let op: met `imul dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabele werken. ❗
+❗ Let op: met `imul dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabelen werken. ❗
 
 ## IDIV
 De deling is de omgekeerde bewerking van de vermenigvuldiging, en verloopt ook via (EDX,EAX). Het deeltal moet zich bevinden in het registerpaar. De deling
@@ -196,7 +196,7 @@ levert 2 resultaten op: rest en quotiënt. Het quotiënt komt in EAX, de rest in
     idiv dword [deler]
 ```
 
-❗ Let op: met `imul dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabele werken. ❗
+❗ Let op: met `idiv dword` kan je geen gebruik maken van constanten en moet je met een geïnitialiseerde variabelen werken. ❗
 
 # Oefeningen
 Nu je omgeving correct is opgezet en je een programma kan asembleren en compileren, is het tijd om zelf aan de slag te gaan.
