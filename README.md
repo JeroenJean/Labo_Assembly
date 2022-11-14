@@ -96,7 +96,11 @@ De bss sectie wordt gebruik voor het declareren van niet geïnitialiseerde varia
 
 ## Text sectie
 In deze sectie gaan we onze eigenlijke code schrijven. Deze moet verplichtend starten met global CMAIN. Dit geeft aan de CPU weer waar het eigenlijke uitvoeren van het programma begint. Afhankelijk van welke compiler je gebruik, kan dit ook global \_start zijn. Voor de linux omgeving waar wij in werken zal dit steeds `_start` zijn.
-
+```nasm
+    section .text
+    global _start
+    _start:
+```
 # Geheugen
 In zowel de .data als de .bss sectie is het mogelijk om bepaalde delen van het geheugen te reserveren om hier later gebruik van te maken in het programma. Dit noemen we doorgaans een variabele. De manier waarop we een variabele definiëren hangt of we deze reeds een waarde gaan meegeven bij het definiëren of niet.
 
